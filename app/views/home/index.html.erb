@@ -1,0 +1,30 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+
+
+<% if current_user %>
+    <h1>Welcome, <%= current_user.name %>!</h1>
+
+    
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Created at</th>
+            <th></th>
+            <th></th>
+        </tr>
+
+    </table>
+
+    <p><%= link_to "Logout", destroy_user_session_url, method: :delete %></p>
+    
+<% else %>
+    <p>Please, <%= link_to "Register", new_user_registration_path %> or <%= link_to "Log in", new_user_session_path %></p>
+<% end %>
