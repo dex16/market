@@ -1,5 +1,4 @@
 <h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
 
 
 <p class="notice"><%= notice %></p>
@@ -8,21 +7,27 @@
 
 
 <% if current_user %>
-    <h1>Welcome, <%= current_user.name %>!</h1>
-
+    <h1>Welcome, <%= current_user.email %>!</h1>
+	<p><%= link_to "Посмотреть все предметы", all_things_path %></p>
     
     <table>
         <tr>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Created at</th>
+            <th>Название</th>
+            <th>Категория</th>
             <th></th>
             <th></th>
         </tr>
+		<% @things.each do |thing| %>
+        <tr>
+            <td><%= thing.name %></td>
+            <td><%= thing.category %></td>
+            <td><%= link_to "Редактировать", edit_thing_path(thing) %></td>
+            <td><%= link_to "Удалить", thing, method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+        <% end %>
 
     </table>
-
+	<p><%= link_to "Добавить ", new_thing_path %></p>
     <p><%= link_to "Logout", destroy_user_session_url, method: :delete %></p>
     
 <% else %>
