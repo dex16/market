@@ -32,10 +32,14 @@ ActiveRecord::Schema.define(version: 20161225215712) do
 
   create_table "trades", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "user2_id"
     t.integer  "thing_id"
+    t.integer  "thing2_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["thing2_id"], name: "index_trades_on_thing2_id"
     t.index ["thing_id"], name: "index_trades_on_thing_id"
+    t.index ["user2_id"], name: "index_trades_on_user2_id"
     t.index ["user_id"], name: "index_trades_on_user_id"
   end
 
