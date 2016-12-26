@@ -1,10 +1,7 @@
 <h1>Инвентарь</h1>
 
-
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-
-
 
 <% if current_user %>
     <h1>Здравствуй, <%= current_user.email %>!</h1>
@@ -15,13 +12,11 @@
             <th>Название</th>
             <th>Категория</th>
             <th></th>
-            <th></th>
         </tr>
 		<% @things.each do |thing| %>
         <tr>
             <td><%= thing.name %></td>
             <td><%= thing.category %></td>
-            <td><%= link_to "Редактировать", edit_thing_path(thing) %></td>
             <td><%= link_to "Удалить", thing, method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
         <% end %>

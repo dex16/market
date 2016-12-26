@@ -8,5 +8,6 @@ class HomeController < ApplicationController
 
 	@things = Thing.all.where("user_id != ?", current_user.id)
 	@bl = current_user.black_lists
+
   end
 end
