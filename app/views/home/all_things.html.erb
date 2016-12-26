@@ -1,4 +1,4 @@
-<h1>Инвентарь</h1>
+<h1>Обмен вещей</h1>
 
 
 <p class="notice"><%= notice %></p>
@@ -8,28 +8,28 @@
 
 <% if current_user %>
     <h1>Здравствуй, <%= current_user.email %>!</h1>
-	<p><%= link_to "Посмотреть все предметы", all_things_path %></p>
+
     
     <table>
         <tr>
             <th>Название</th>
             <th>Категория</th>
-            <th></th>
+            <th>Владелец</th>
             <th></th>
         </tr>
 		<% @things.each do |thing| %>
         <tr>
             <td><%= thing.name %></td>
             <td><%= thing.category %></td>
-            <td><%= link_to "Редактировать", edit_thing_path(thing) %></td>
-            <td><%= link_to "Удалить", thing, method: :delete, data: { confirm: "Are you sure?" } %></td>
+            <td><%= User.find(thing.user_id).email %></td>
+			<td><%= link_to "Обмен", trade_new_path(thing) %></td>
         </tr>
         <% end %>
 
     </table>
-	<p><%= link_to "Добавить ", new_thing_path %></p>
+    <p><%= link_to "Инвентарь", root_path %></p>
     <p><%= link_to "Выйти", destroy_user_session_url, method: :delete %></p>
-    
+
 <% else %>
     <p>Please, <%= link_to "Регистрация", new_user_registration_path %> or <%= link_to "Вход", new_user_session_path %></p>
 <% end %>
