@@ -16,8 +16,8 @@
 			<td><%= link_to "Отклонить", trade_reject_path(id: trade.id) %></td>
         </tr>
         <% end %>
-
     </table>
+<br>
 	<p><%= link_to "Назад ", root_path%></p>
      <p>email:&nbsp;<%= current_user.email %>&nbsp;<%= link_to "выйти", destroy_user_session_url, method: :delete %></p>
     

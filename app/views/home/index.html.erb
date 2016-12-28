@@ -22,7 +22,9 @@
         <% end %>
 
     </table>
+
 	<p><%= link_to "Добавить ", new_thing_path %></p>
+
     <p>email:&nbsp;<%= current_user.email %>&nbsp;<%= link_to "выйти", destroy_user_session_url, method: :delete %></p>
     
 <% else %>

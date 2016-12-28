@@ -27,9 +27,13 @@ class TradeController < ApplicationController
 
   def accept
     @trade= Trade.find(params[:id])
+	Trade.where("thing_id = ? OR thing2_id = ?", @trade.thing_id, @trade.thing_id).destroy_all()
+	Trade.where("thing_id = ? OR thing2_id = ?", @trade.thing2_id, @trade.thing2_id).destroy_all()
+	BlackList.where("thing_id = ?", @trade.thing_id).destroy_all()
+    BlackList.where("thing_id = ?", @trade.thing2_id).destroy_all()
+    Thing.find(@trade.thing_id).destroy
+    Thing.find(@trade.thing2_id).destroy
     notice = if @trade.destroy
-               Thing.find(@trade.thing_id).destroy
-               Thing.find(@trade.thing2_id).destroy
                "Обмен удался."
              else
                "Обмен не удался."
@@ -41,16 +45,12 @@ class TradeController < ApplicationController
     @trade= Trade.find(params[:id])
     BlackList.create(user_id: @trade.user_id, thing_id: @trade.thing2_id)
     BlackList.create(user_id: @trade.user2_id, thing_id: @trade.thing_id)
+    @trade.destroy
     redirect_to root_path, notice: "Предложение отклонено"
   end
 
   def destroy
-    notice = if @thing.destroy
-      "Предложение удалено."
-    else
-      "Ошибка! Предложение не удалено."
-    end
-    redirect_to trade_index, notice: notice
+
   end
 
   def thing_id

@@ -20,6 +20,7 @@
         <% end %>
 
     </table>
+<br>
     <p>email:&nbsp;<%= current_user.email %>&nbsp;<%= link_to "выйти", destroy_user_session_url, method: :delete %></p>
 
 <% else %>

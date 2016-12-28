@@ -15,6 +15,8 @@ class ThingsController < ApplicationController
 
   def destroy
     @thing = Thing.find(params[:id])
+    Trade.where("thing_id = ? OR thing2_id = ?", params[:id], params[:id]).destroy_all()
+	BlackList.where("thing_id = ?", params[:id]).destroy_all()
     notice = if @thing.destroy
       "Предмет удален."
     else
