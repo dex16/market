@@ -1,35 +1,29 @@
 <h1>Обмен вещей</h1>
-
-
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
-
-
-<% if current_user %>
-    <h1>Здравствуй, <%= current_user.email %>!</h1>
-
-    
+<ul><b>Меню:</b>
+<li><%= link_to "Инвентарь", root_path %></li>
+<li><%= link_to "Поиск предметов для обмена", all_things_path %></li>
+<li><%= link_to "Предложения обмена ", trade_show_path %></li>
+</ul>
+<% if current_user %>    
     <table>
         <tr>
             <th>Название</th>
-            <th>Категория</th>
-            <th>Владелец</th>
+            <th>&nbsp;Категория</th>
             <th></th>
         </tr>
 		<% @things.each do |thing| %>
         <tr>
             <td><%= thing.name %></td>
             <td><%= thing.category %></td>
-            <td><%= User.find(thing.user_id).email %></td>
 			<td><%= link_to "Обмен", trade_new_path(user_id:thing.user_id, thing_id: thing.id) %></td>
         </tr>
         <% end %>
 
     </table>
-    <p><%= link_to "Инвентарь", root_path %></p>
-    <p><%= link_to "Выйти", destroy_user_session_url, method: :delete %></p>
+    <p>email:&nbsp;<%= current_user.email %>&nbsp;<%= link_to "выйти", destroy_user_session_url, method: :delete %></p>
 
 <% else %>
-    <p>Please, <%= link_to "Регистрация", new_user_registration_path %> or <%= link_to "Вход", new_user_session_path %></p>
+    <p><%= link_to "Регистрация", new_user_registration_path %> или <%= link_to "Вход", new_user_session_path %></p>
 <% end %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>

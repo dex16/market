@@ -22,8 +22,8 @@
     </table>
 	<p><%= link_to "Назад ", all_things_path %></p>
 
-    <p><%= link_to "Выйти", destroy_user_session_url, method: :delete %></p>
+<p>email:&nbsp;<%= current_user.email %>&nbsp;<%= link_to "выйти", destroy_user_session_url, method: :delete %></p>
     
 <% else %>
-    <p>Please, <%= link_to "Регистрация", new_user_registration_path %> or <%= link_to "Вход", new_user_session_path %></p>
+    <p><%= link_to "Регистрация", new_user_registration_path %> или <%= link_to "Вход", new_user_session_path %></p>
 <% end %>
