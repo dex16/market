@@ -4,7 +4,7 @@ class TradeController < ApplicationController
   end
 
   def show
-	@trade = Trade.all.where("user2_id = ?", current_user.id)
+	@trade = Trade.all.where("user_id = ?", current_user.id)
   end
 
   def new
@@ -26,10 +26,22 @@ class TradeController < ApplicationController
   end
 
   def accept
-
+    @trade= Trade.find(params[:id])
+    notice = if @trade.destroy
+               Thing.find(@trade.thing_id).destroy
+               Thing.find(@trade.thing2_id).destroy
+               "Обмен удался."
+             else
+               "Обмен не удался."
+             end
+    redirect_to root_path, notice: notice
   end
 
   def reject
+    @trade= Trade.find(params[:id])
+    BlackList.create(user_id: @trade.user_id, thing_id: @trade.thing2_id)
+    BlackList.create(user_id: @trade.user2_id, thing_id: @trade.thing_id)
+    redirect_to root_path, notice: "Предложение отклонено"
   end
 
   def destroy

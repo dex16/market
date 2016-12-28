@@ -14,15 +14,15 @@
         </tr>
 		<% @trade.each do |trade| %>
         <tr>
-            <td><%= Thing.find(trade.thing2_id).name %></td>
             <td><%= Thing.find(trade.thing_id).name %></td>
-            <td><%= link_to "Принять", trade_accept_path %></td>
-			<td><%= link_to "Отклонить", trade_reject_path %></td>
+            <td><%= Thing.find(trade.thing2_id).name %></td>
+            <td><%= link_to "Принять", trade_accept_path(id: trade.id) %></td>
+			<td><%= link_to "Отклонить", trade_reject_path(id: trade.id) %></td>
         </tr>
         <% end %>
 
     </table>
-	<p><%= link_to "Назад ", all_things_path %></p>
+	<p><%= link_to "Назад ", root_path%></p>
 
     <p><%= link_to "Выйти", destroy_user_session_url, method: :delete %></p>
     
