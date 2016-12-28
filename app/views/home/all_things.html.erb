@@ -22,7 +22,7 @@
             <td><%= thing.name %></td>
             <td><%= thing.category %></td>
             <td><%= User.find(thing.user_id).email %></td>
-			<td><%= link_to "Обмен", trade_new_path(thing) %></td>
+			<td><%= link_to "Обмен", trade_new_path(user_id:thing.user_id, thing_id: thing.id) %></td>
         </tr>
         <% end %>
 
