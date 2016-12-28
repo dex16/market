@@ -1,0 +1,31 @@
+<h1>Предложения об обмене</h1>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<% if current_user %>
+    
+    <table>
+        <tr>
+            <th>Ваша вещь</th>
+            <th>Вешь для обмена</th>
+            <th></th>
+			<th></th>
+        </tr>
+		<% @trade.each do |trade| %>
+        <tr>
+            <td><%= Thing.find(trade.thing2_id).name %></td>
+            <td><%= Thing.find(trade.thing_id).name %></td>
+            <td><%= link_to "Принять", trade_accept_path %></td>
+			<td><%= link_to "Отклонить", trade_reject_path %></td>
+        </tr>
+        <% end %>
+
+    </table>
+	<p><%= link_to "Назад ", all_things_path %></p>
+
+    <p><%= link_to "Выйти", destroy_user_session_url, method: :delete %></p>
+    
+<% else %>
+    <p>Please, <%= link_to "Регистрация", new_user_registration_path %> or <%= link_to "Вход", new_user_session_path %></p>
+<% end %>

@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 20161225215712) do
 
   create_table "black_lists", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "thing_id"
+    t.integer  "user_id",    null: false
+    t.integer  "thing_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["thing_id"], name: "index_black_lists_on_thing_id"
@@ -22,19 +22,19 @@ ActiveRecord::Schema.define(version: 20161225215712) do
   end
 
   create_table "things", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.string   "category"
-    t.integer  "user_id"
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_things_on_user_id"
   end
 
   create_table "trades", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "user2_id"
-    t.integer  "thing_id"
-    t.integer  "thing2_id"
+    t.integer  "user_id",    null: false
+    t.integer  "user2_id",   null: false
+    t.integer  "thing_id",   null: false
+    t.integer  "thing2_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["thing2_id"], name: "index_trades_on_thing2_id"

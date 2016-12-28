@@ -4,9 +4,6 @@
 <p class="alert"><%= alert %></p>
 
 <% if current_user %>
-    <h1>Здравствуй, <%= current_user.email %>!</h1>
-	<p><%= link_to "Посмотреть все предметы", all_things_path %></p>
-    <p><%= link_to "Предложения обмена ", trade_show_path %></p>
     
     <table>
         <tr>
@@ -18,12 +15,13 @@
         <tr>
             <td><%= thing.name %></td>
             <td><%= thing.category %></td>
-            <td><%= link_to "Удалить", thing, method: :delete, data: { confirm: "Are you sure?" } %></td>
+            <td><%= link_to "Обменять", trade_accept_path %></td>
         </tr>
         <% end %>
 
     </table>
-	<p><%= link_to "Добавить ", new_thing_path %></p>
+	<p><%= link_to "Назад ", all_things_path %></p>
+
     <p><%= link_to "Выйти", destroy_user_session_url, method: :delete %></p>
     
 <% else %>

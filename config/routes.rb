@@ -4,12 +4,11 @@ Rails.application.routes.draw do
 
   get 'trade/show'
 
-  #get 'trade/new'
-
   get 'trade/new/:user_id,:thing_id', to: 'trade#new', as: 'trade_new'
 
-  #get 'trade/accept'
-   get 'trade/accept/:user_id,:user2_id,:thing_id,:thing2_id', to: 'trade#accept', as: 'trade_accept'
+  get 'trade/create/:user_id,:user2_id,:thing_id,:thing2_id', to: 'trade#create', as: 'trade_create'
+
+  get 'trade/accept'
 
   get 'trade/reject'
 
