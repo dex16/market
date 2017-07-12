@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161225215712) do
 
   create_table "things", force: :cascade do |t|
     t.string   "name",       null: false
-    t.string   "category"
+    t.string   "category",   null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

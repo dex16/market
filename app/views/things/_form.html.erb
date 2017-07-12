@@ -11,17 +11,31 @@
         </div>
     <% end %>
 
-    <div class="field">
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-    </div>
+	
+	<div class="container">
+	  <h2>Добавить вещь</h2>
+	 
+	  <div class="panel panel-default col-xs-3 left">
+		<div class="panel-body">
+			
+				
+				<label class="control-label">Название</label>
+				<div class="field">				
+					<%= f.text_field :name %>	
+				</div>
+			
+					<label class="control-label">Категория</label>
+				
+				<div class="field">					
+					<%= f.text_field :category %>
+				</div>
+		
+				<div class="actions btn">
+					<%= f.submit%>
+				</div>
+			
 
-    <div class="field">
-        <%= f.label :category %>
-        <%= f.text_field :category %>
-    </div>
-
-    <div class="actions">
-        <%= f.submit %>
-    </div>
+		</div> <!--container panel body-->
+	  </div><!--container panel-->
+	</div> <!--container -->
 <% end %>
